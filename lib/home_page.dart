@@ -8,6 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int sliderIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +40,12 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             child: Image.asset("assets/images/avatar1.png"),
                             decoration: BoxDecoration(
-                                color: Colors.blue, shape: BoxShape.circle),
-                            height: 56,
-                            width: 56,
+                                border:
+                                    Border.all(color: Colors.white, width: 3),
+                                color: Colors.blue,
+                                shape: BoxShape.circle),
+                            height: 58,
+                            width: 58,
                           ),
                         ],
                       ),
@@ -53,7 +58,8 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-          )
+          ),
+          postListView()
         ],
       ),
     );
@@ -88,4 +94,112 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.send))
         ],
       );
+
+  Container postListView() => Container(
+        height: 600,
+        width: double.infinity,
+        child: ListView.builder(
+            itemCount: 10,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return post();
+            }),
+      );
+
+  Container post() => Container(
+        height: 620,
+        width: double.infinity,
+        color: Colors.red,
+        child: Column(
+          children: [
+            Expanded(
+                flex: 1,
+                child: Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: Image.asset(
+                              "assets/images/avatar1.png",
+                              scale: 1.2,
+                            )),
+                        Expanded(
+                            flex: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "User_name",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Icon(Icons.check)
+                                  ],
+                                ),
+                                Row(
+                                  children: [Text("location")],
+                                )
+                              ],
+                            )),
+                        Expanded(child: Icon(Icons.more_horiz))
+                      ],
+                    ),
+                    color: Colors.white)),
+            sliderPost(),
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: Colors.blue,
+              ),
+            )
+          ],
+        ),
+      );
+
+  Expanded sliderPost() {
+    return Expanded(
+      flex: 5,
+      child: Container(
+        child: Stack(
+          children: [
+            PageView.builder(
+                itemCount: 10,
+                onPageChanged: (value) {
+                  setState(() {
+                    sliderIndex = value + 1;
+                  });
+                  print(value);
+                },
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 200,
+                    width: 200,
+                    child: Image.asset(
+                      "assets/images/post1.png",
+                      fit: BoxFit.cover,
+                    ),
+                    color: Colors.black,
+                  );
+                }),
+            Positioned(
+                top: 10,
+                right: 10,
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(13),
+                      color: Colors.black.withOpacity(0.6)),
+                  child: Text(
+                    "$sliderIndex/10",
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
+                ))
+          ],
+        ),
+        color: Colors.black,
+      ),
+    );
+  }
 }
