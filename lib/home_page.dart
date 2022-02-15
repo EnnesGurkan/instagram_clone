@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          postListView()
+          postListView(),
         ],
       ),
     );
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
   Container post() => Container(
         height: 620,
         width: double.infinity,
-        color: Colors.red,
+        color: Colors.white,
         child: Column(
           children: [
             Expanded(
@@ -149,11 +149,86 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white)),
             sliderPost(),
             Expanded(
-              flex: 2,
-              child: Container(
-                color: Colors.blue,
-              ),
-            )
+                flex: 2,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Icon(Icons.favorite_border),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Icon(Icons.mode_comment),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Icon(Icons.send_sharp),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(flex: 3, child: Icon(Icons.more_horiz)),
+                        Expanded(
+                            flex: 3,
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(6),
+                                child: Icon(Icons.save_alt_sharp),
+                              ),
+                            ))
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/avatar1.png",
+                            height: 25,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text("Liked by "),
+                          Text(
+                            "craig_love",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(" and "),
+                          Text(
+                            "44,686",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(" other"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: RichText(
+                          text: TextSpan(children: [
+                        TextSpan(
+                            onEnter: (event) {},
+                            text: "joshua_l ",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
+                        TextSpan(
+                            text:
+                                "The game in Japan was amazing and I want to share some photos",
+                            style: TextStyle(color: Colors.black)),
+                      ])),
+                    )
+                  ],
+                ))
           ],
         ),
       );
