@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           SizedBox(
-            height: 98,
+            height: 88,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
       );
 
   Container postListView() => Container(
-        height: 600,
+        height: 563,
         width: double.infinity,
         child: ListView.builder(
             itemCount: 10,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/widgets/textFormFields.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,9 +25,15 @@ class LoginPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  customTextform("name_surname"),
+                  CustomTextFormField(
+                    hintText: "name",
+                    height: 36,
+                  ),
                   SizedBox(height: 16),
-                  customTextform("password"),
+                  CustomTextFormField(
+                    hintText: "password",
+                    height: 36,
+                  ),
                   SizedBox(height: 19),
                   GestureDetector(
                       onTap: () {
@@ -136,14 +143,6 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  customTextform(String hinttext) {
-    return TextFormField(
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-          hintText: hinttext),
     );
   }
 }

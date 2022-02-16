@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/home_page.dart';
-import 'package:instagram_clone/login_page.dart';
+import 'package:instagram_clone/views/home_page.dart';
+import 'package:instagram_clone/views/login_page.dart';
+
+import 'views/bottom_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +20,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomePage());
+        home: ButtomBar());
   }
 }
