@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/views/home_page.dart';
+import 'package:instagram_clone/views/login_page.dart';
+
+import 'views/bottom_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,31 +20,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Scaffold(
-          body: Container(
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(child: Text("Instagram")),
-                customTextform("name_surname"),
-                SizedBox(height: 16),
-                customTextform("password")
-              ],
-            ),
-          ),
-        ));
-  }
-
-  Padding customTextform(String hinttext) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: TextFormField(
-        decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-            hintText: hinttext),
-      ),
-    );
+        home: ButtomBar());
   }
 }
