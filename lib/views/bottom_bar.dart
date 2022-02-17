@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:instagram_clone/search_page.dart';
 import 'package:instagram_clone/views/home_page.dart';
 
+import 'profile_page.dart';
+
 class ButtomBar extends StatefulWidget {
   const ButtomBar({Key? key}) : super(key: key);
 
@@ -14,13 +16,13 @@ class _ButtomBarState extends State<ButtomBar> {
   List<Widget> menu = [
     HomePage(),
     Search(),
-    Container(color: Colors.yellow),
     Container(
       color: Colors.blue,
     ),
     Container(
       color: Colors.amber,
-    )
+    ),
+    Profile(),
   ];
   @override
   Widget build(BuildContext context) {
