@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -9,11 +7,11 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> images = ["https://randomuser.me/api/portraits/men/0.jpg", ""];
     final List<Icon> _tabs = <Icon>[
-      Icon(
+      const Icon(
         Icons.ac_unit,
         color: Colors.black,
       ),
-      Icon(
+      const Icon(
         Icons.ac_unit_outlined,
         color: Colors.black,
       )
@@ -149,11 +147,20 @@ class Profile extends StatelessWidget {
                       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                   sliver: SliverAppBar(
                     backgroundColor: Colors.white,
-                    toolbarHeight: 0,
+                    toolbarHeight: 50,
                     pinned: true,
                     forceElevated: innerBoxIsScrolled,
-                    bottom: TabBar(
-                      tabs: _tabs.map((Icon name) => Tab(icon: name)).toList(),
+                    flexibleSpace: Container(
+                      decoration: BoxDecoration(
+                          border: Border(
+                              top: BorderSide(
+                        color: Colors.black.withOpacity(0.5),
+                        width: 0.5,
+                      ))),
+                      child: TabBar(
+                        tabs:
+                            _tabs.map((Icon name) => Tab(icon: name)).toList(),
+                      ),
                     ),
                   ),
                 ),
@@ -174,20 +181,9 @@ class Profile extends StatelessWidget {
                                 NestedScrollView.sliverOverlapAbsorberHandleFor(
                                     context),
                           ),
-                          SliverPadding(
-                            padding: const EdgeInsets.all(8.0),
-                            sliver: SliverFixedExtentList(
-                              itemExtent: 48.0,
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                  return ListTile(
-                                    title: Text('Item $index'),
-                                  );
-                                },
-                                childCount: 30,
-                              ),
-                            ),
-                          ),
+                          SliverToBoxAdapter(
+                            child: customGridView(),
+                          )
                         ],
                       );
                     },
@@ -277,5 +273,28 @@ class Profile extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget customGridView() {
+    return Container(
+        width: double.infinity,
+        child: GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 10,
+            itemBuilder: (context, index) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://randomuser.me/api/portraits/men/$index.jpg")),
+                    border: Border.all(color: Colors.white, width: 3),
+                    color: Colors.blue,
+                  ),
+                  height: 58,
+                  width: 58,
+                ),
+            padding: EdgeInsets.only(top: 0),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 1, crossAxisCount: 3)));
   }
 }
